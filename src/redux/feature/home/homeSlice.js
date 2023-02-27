@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 const initialState = {
   loading: false,
   products: [],
+  product: null,
 };
 
 export const asyncFetchProducts = createAsyncThunk(
@@ -20,9 +21,30 @@ export const asyncFetchProducts = createAsyncThunk(
   }
 );
 
+export const asyncFetchSingleProduct = createAsyncThunk(
+  "home/fetchSingProductDetails",
+  async (productID) => {
+    try {
+      const responseObj = await fetch(
+        `https://fakestoreapi.com/products/${productID}`
+      );
+      const product = await responseObj.json();
+      return product;
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  }
+);
+
 const homeSlice = createSlice({
   name: "homeSlice",
   initialState,
+  reducers: {
+    clearCurrentProduct: (state, action) => {
+      state.product = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(asyncFetchProducts.pending, (state) => {
@@ -31,8 +53,16 @@ const homeSlice = createSlice({
       .addCase(asyncFetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
+      })
+      .addCase(asyncFetchSingleProduct.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(asyncFetchSingleProduct.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
       });
   },
 });
 
+export const { clearCurrentProduct } = homeSlice.actions;
 export default homeSlice.reducer;
