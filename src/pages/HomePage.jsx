@@ -1,7 +1,7 @@
 import { Box, CircularProgress as Progress, Container, Grid } from '@mui/material';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncFetchProducts } from '../components/redux/feature/home/homeSlice';
+import { asyncFetchProducts } from '../redux/feature/home/homeSlice';
 import ProductCard from '../components/Card';
 
 const HomePage = () => {

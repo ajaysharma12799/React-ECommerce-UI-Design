@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink } from 'react-router-dom'
 import ProductCard from '../components/Card'
-import { asyncFetchProducts } from '../components/redux/feature/home/homeSlice'
+import { asyncFetchProducts } from '../redux/feature/home/homeSlice'
 
 const Cart = () => {
     const dispatch = useDispatch();

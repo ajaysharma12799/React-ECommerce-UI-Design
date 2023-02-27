@@ -2,7 +2,7 @@ import { AspectRatio } from '@mui/joy'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { addProductToCart, removeProductFromCart } from './redux/feature/cart/cartSlice';
+import { addProductToCart, removeProductFromCart } from '../redux/feature/cart/cartSlice';
 
 const ProductCard = ({ product, type }) => {
     const buttonType = type === '/cart';
