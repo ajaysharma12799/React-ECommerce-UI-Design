@@ -1,7 +1,8 @@
 import { AspectRatio } from '@mui/joy'
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Typography, Link } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import { addProductToCart, removeProductFromCart } from '../redux/feature/cart/cartSlice';
 
 const ProductCard = ({ product, type }) => {
@@ -13,6 +14,8 @@ const ProductCard = ({ product, type }) => {
             buttonType ? removeProductFromCart(product.id) : addProductToCart(product)
         );
     }
+
+    const slug = product?.title?.replaceAll(' ', '-');
 
     return (
         <Card>
@@ -26,20 +29,22 @@ const ProductCard = ({ product, type }) => {
                 />
             </AspectRatio>
             <CardContent>
-                <Typography
-                    gutterBottom
-                    variant='h6'
-                    component={'div'}
-                    sx={{
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        display: '-webkit-box',
-                        WebkitLineClamp: '1',
-                        WebkitBoxOrient: 'vertical',
-                    }}
-                >
-                    {product.title}
-                </Typography>
+                <Link sx={{ textDecoration: 'none' }} underline='none' component={RouterLink} to={`/product/${slug}?id=${product.id}`}>
+                    <Typography
+                        gutterBottom
+                        variant='h6'
+                        component={'div'}
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            display: '-webkit-box',
+                            WebkitLineClamp: '1',
+                            WebkitBoxOrient: 'vertical',
+                        }}
+                    >
+                        {product.title}
+                    </Typography>
+                </Link>
                 {
                     !buttonType && (
                         <>
