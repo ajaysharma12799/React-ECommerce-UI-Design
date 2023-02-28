@@ -29,12 +29,12 @@ const ProductDetails = () => {
                             <Progress />
                         </Box>
                     ) : (
-                        <Stack direction={{ xs: 'column', md: 'row' }} spacing={5} justifyContent='space-between'>
-                            <Box>
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={5} justifyContent='space-between'>
+                                <Box mx={'auto'}>
                                 <img
                                     src={product?.image}
                                     alt={product?.title}
-                                    width={350}
+                                        width={300}
                                 />
                                 <Box my={2}>
                                     <Button variant='contained' fullWidth>
