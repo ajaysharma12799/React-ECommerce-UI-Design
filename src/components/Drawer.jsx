@@ -1,6 +1,7 @@
-import { ShoppingCart } from '@mui/icons-material'
-import { Box, Button, Drawer, List, ListItem, Typography } from '@mui/material'
+import { Home, Lock, Login, ShoppingCart } from '@mui/icons-material'
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const DrawerComponent = ({ isDrawerOpen, toggleDrawer }) => {
     return (
@@ -10,33 +11,50 @@ const DrawerComponent = ({ isDrawerOpen, toggleDrawer }) => {
                     open={isDrawerOpen}
                     onClose={toggleDrawer}
                     anchor={'right'}
+                    PaperProps={{
+                        sx: { width: "200px" },
+                    }}
                 >
                     <List>
                         <ListItem>
-                            <Typography variant='h6'>
-                                Home
-                            </Typography>
+                            <ListItemButton LinkComponent={Link} href='/'>
+                                <ListItemIcon>
+                                    <Home />
+                                </ListItemIcon>
+                                <ListItemText>
+                                    Home
+                                </ListItemText>
+                            </ListItemButton>
                         </ListItem>
-                    </List>
-                    <List>
                         <ListItem>
-                            <Typography variant='h6'>
-                                Products
-                            </Typography>
+                            <ListItemButton LinkComponent={Link} href='/login'>
+                                <ListItemIcon>
+                                    <Login />
+                                </ListItemIcon>
+                                <ListItemText>
+                                    Signin
+                                </ListItemText>
+                            </ListItemButton>
                         </ListItem>
-                    </List>
-                    <List>
                         <ListItem>
-                            <Typography variant='h6'>
-                                Signin
-                            </Typography>
+                            <ListItemButton LinkComponent={Link} href='/register'>
+                                <ListItemIcon>
+                                    <Lock />
+                                </ListItemIcon>
+                                <ListItemText>
+                                    Signup
+                                </ListItemText>
+                            </ListItemButton>
                         </ListItem>
-                    </List>
-                    <List>
                         <ListItem>
-                            <Button endIcon={<ShoppingCart />} variant='outlined'>
-                                Cart
-                            </Button>
+                            <ListItemButton LinkComponent={Link} href='/cart'>
+                                <ListItemIcon>
+                                    <ShoppingCart />
+                                </ListItemIcon>
+                                <ListItemText>
+                                    Cart
+                                </ListItemText>
+                            </ListItemButton>
                         </ListItem>
                     </List>
                 </Drawer>
